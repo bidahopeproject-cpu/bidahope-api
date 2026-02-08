@@ -30,8 +30,7 @@ RUN composer install --no-dev --optimize-autoloader --no-interaction
 RUN chown -R www-data:www-data /var/www/html \
     && chmod -R 775 /var/www/html/storage /var/www/html/bootstrap/cache
 
-# Render uses 10000
-EXPOSE 10000
+EXPOSE 8080
 
 # Copy the deploy script and give it execution permissions
 COPY render/deploy.sh /usr/local/bin/deploy.sh
