@@ -17,8 +17,8 @@ return Application::configure(basePath: dirname(__DIR__))
     ->withMiddleware(function ($middleware) {
         // Explicitly ensure CORS is at the very top of the stack
         $middleware->prepend(HandleCors::class); 
-        
         $middleware->alias([
+            'manual.auth' => \App\Http\Middleware\EnsureTokenIsValid::class,
             'role' => RoleMiddleware::class,
         ]);
     })
