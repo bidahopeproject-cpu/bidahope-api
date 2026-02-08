@@ -5,7 +5,6 @@ use Illuminate\Foundation\Application;
 use Illuminate\Http\Middleware\HandleCors;
 use Illuminate\Foundation\Configuration\Exceptions;
 use Illuminate\Foundation\Configuration\Middleware;
-use Laravel\Sanctum\Http\Middleware\EnsureFrontendRequestsAreStateful;
 
 
 return Application::configure(basePath: dirname(__DIR__))
@@ -16,8 +15,6 @@ return Application::configure(basePath: dirname(__DIR__))
         health: '/up',
     )
     ->withMiddleware(function ($middleware) {
-        $middleware->statefulApi();
-
         // Explicitly ensure CORS is at the very top of the stack
         $middleware->prepend(HandleCors::class); 
         

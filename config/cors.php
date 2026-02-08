@@ -1,7 +1,7 @@
 <?php
 
 return [
-    'paths' => ['api/*', 'login', 'logout', 'sanctum/csrf-cookie'], // Add 'login' here if it's not under api/
+    'paths' => ['api/*', 'sanctum/csrf-cookie'], // Add 'login' here if it's not under api/
     'allowed_origins' => ['*'],
     'supports_credentials' => true,
     'allowed_methods' => ['*'],

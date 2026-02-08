@@ -24,10 +24,7 @@ class AuthController extends Controller
             ], 401);
         }
 
-        $token = $user->createToken('bidahope-token')->plainTextToken;
-
         return response()->json([
-            'token' => $token,
             'user' => $user
         ]);
     }

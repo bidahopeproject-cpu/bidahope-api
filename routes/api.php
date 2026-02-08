@@ -20,37 +20,35 @@ use App\Http\Controllers\Api\UserController;
 Route::post('/login', [AuthController::class, 'login']);
 Route::post('/logout', [AuthController::class, 'logout']);
 
-Route::middleware('auth:sanctum')->group(function () {
-    /*
-    |--------------------------------------------------------------------------
-    | Dashboard
-    |--------------------------------------------------------------------------
-    */
-    Route::prefix('dashboard')->group(function () {
-        Route::get('/', [DashboardController::class, 'index']);
-        Route::get('/charts', [DashboardController::class, 'charts']);
-    });
-
-
-    /*
-    |--------------------------------------------------------------------------
-    | Admin Routes
-    |--------------------------------------------------------------------------
-    */
-    Route::middleware('role:admin')->group(function () {
-        Route::apiResource('users', UserController::class);
-        Route::put('users/{id}/change-password', [UserController::class, 'changePassword']);
-
-        Route::apiResource('organs', OrganController::class);
-    });
-
-    /*
-    |--------------------------------------------------------------------------
-    | Shared Routes
-    |--------------------------------------------------------------------------
-    */
-    Route::apiResource('patients', PatientController::class);
-    Route::apiResource('patient-waitlists', PatientWaitlistController::class);
-    Route::apiResource('organ-donations', OrganDonationController::class);
-    Route::apiResource('transplants-schedules', TransplantScheduleController::class);
+/*
+|--------------------------------------------------------------------------
+| Dashboard
+|--------------------------------------------------------------------------
+*/
+Route::prefix('dashboard')->group(function () {
+    Route::get('/', [DashboardController::class, 'index']);
+    Route::get('/charts', [DashboardController::class, 'charts']);
 });
+
+
+/*
+|--------------------------------------------------------------------------
+| Admin Routes
+|--------------------------------------------------------------------------
+*/
+Route::middleware('role:admin')->group(function () {
+    Route::apiResource('users', UserController::class);
+    Route::put('users/{id}/change-password', [UserController::class, 'changePassword']);
+
+    Route::apiResource('organs', OrganController::class);
+});
+
+/*
+|--------------------------------------------------------------------------
+| Shared Routes
+|--------------------------------------------------------------------------
+*/
+Route::apiResource('patients', PatientController::class);
+Route::apiResource('patient-waitlists', PatientWaitlistController::class);
+Route::apiResource('organ-donations', OrganDonationController::class);
+Route::apiResource('transplants-schedules', TransplantScheduleController::class);
